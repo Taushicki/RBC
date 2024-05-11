@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#120A21</color>
+    <color name="fieldBackground">#2E2626</color>
+    <color name="buttonColor">#21F8D1</color>
+    <color name="linkColor">#21F8D1</color>
+    <color name="hintText">#B4B4B4</color>
+    <color name="loginFieldStroke">#862424</color>
+    <color name="loginFieldBackgroundError">#634646</color>
+    <color name="warningLabel">#862424</color>
+    <color name="backgroundContainerColor">#1D1D1D</color>
+</resources>

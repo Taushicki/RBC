@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RBC</string>
+    <string name="text_login">Login</string>
+    <string name="login_activity_login_hint_text">Login</string>
+    <string name="login_activity_password_hint_text">Password</string>
+    <string name="login_activity_hint_warning_text">"Field can't be empty"</string>
+    <string name="login_activity_information">Please sign in to continue.</string>
+    <string name="login_activity_login_button">LOGIN</string>
+    <string name="login_activity_recover_password_link">Forgot password?</string>
+
+    <string name="login_activity_registration_text">Don\'t have an account? </string>
+    <string name="login_activity_registration_link">Sign up</string>
+
+    <string name="warning_user_not_found">User not found</string>
+    <string name="warning_incorrect_password">Incorrect password</string>
+</resources>
