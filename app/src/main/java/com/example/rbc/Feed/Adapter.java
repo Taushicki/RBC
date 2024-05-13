@@ -21,12 +21,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_WITHOUT_IMAGE = 2;
     private final Context context;
     private final List<NewsDTO> newsList;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssZ");
 
     public Adapter(List<NewsDTO> newsList, Context context){
         this.newsList = newsList;
         this.context = context;
-
     }
 
     @NonNull
@@ -36,10 +34,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (viewType == VIEW_TYPE_WITH_IMAGE) {
             View itemView = inflater.inflate(R.layout.news_item_with_img, parent, false);
-            return new NewsWithImageViewHolder(itemView);
+            return new NewsWithImageViewHolder(itemView, parent.getContext());
         } else {
             View itemView = inflater.inflate(R.layout.news_item_without_img, parent, false);
-            return new NewsViewHolder(itemView);
+            return new NewsViewHolder(itemView, parent.getContext());
         }
     }
 
@@ -49,13 +47,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof NewsWithImageViewHolder) {
             NewsWithImageViewHolder viewHolder = (NewsWithImageViewHolder) holder;
-            Glide.with(viewHolder.itemView.getContext()).load(news.getImg()).into(viewHolder.image);
-            viewHolder.title.setText(news.getTitle());
-            viewHolder.time.setText(ZonedDateTime.parse(news.getPubDate(), formatter).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().toString().substring(11, 16));
+            viewHolder.createPreview(news);
         } else if (holder instanceof NewsViewHolder) {
             NewsViewHolder viewHolder = (NewsViewHolder) holder;
-            viewHolder.title.setText(news.getTitle());
-            viewHolder.time.setText(ZonedDateTime.parse(news.getPubDate(), formatter).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().toString().substring(11, 16));
+            viewHolder.createPreview(news);
         }
     }
 
