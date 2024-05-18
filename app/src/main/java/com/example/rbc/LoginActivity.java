@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.example.client.ApiServices.ApiUserServices;
@@ -28,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText loginField;
     private EditText passwordField;
-    private static final String PREFS_NAME = "MyPrefsFile";
 
+    private TextView registration_link;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -45,7 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
         loginField = findViewById(R.id.loginActivityloginField);
         passwordField = findViewById(R.id.loginActivityPasswordField);
+        registration_link = findViewById(R.id.registrationAccountLink);
         loginButtonListener();
+        registrationLinkListener();
     }
     private void mainActivityStart(UserDTO user){
         new UserDataManager(getBaseContext()).firstLoginSetup(user);
@@ -75,6 +79,22 @@ public class LoginActivity extends AppCompatActivity {
                 );
             }
         });
+    }
+
+    private void registrationLinkListener(){
+        registration_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 
     private class Authentification extends AsyncTask<String, Void, UserDTO> {

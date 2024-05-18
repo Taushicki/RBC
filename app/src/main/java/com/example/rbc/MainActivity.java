@@ -25,10 +25,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private Adapter adapter;
-    private RecyclerView feed;
     private ApiNewsServices api;
     private int countNews = 0;
     private boolean isLoadingData = false;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         api = new ApiNewsServices();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        feed = findViewById(R.id.feed);
+        RecyclerView feed = findViewById(R.id.feed);
         feed.setLayoutManager(layoutManager);
         adapter = new Adapter(new ArrayList<>(), MainActivity.this);
         feed.setAdapter(adapter);
@@ -68,28 +68,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         feed.addOnScrollListener(scroll);
-        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshData();
             }
         });
+
+
     }
 
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//
-//        adapter = new Adapter(new ArrayList<>(), MainActivity.this);
-//        feed.setAdapter(adapter);
-//    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
     private void refreshData() {
         countNews = 0;
+        adapter.clearNewsList();
         new LoadNews(countNews, api, adapter, MainActivity.this).execute();
     }
 
     public void setIsLoadingData(boolean isLoadingData) {
         this.isLoadingData = isLoadingData;
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

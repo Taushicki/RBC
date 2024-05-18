@@ -40,7 +40,6 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return new NewsViewHolder(itemView, parent.getContext());
         }
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewsDTO news = newsList.get(position);
@@ -68,6 +67,12 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @SuppressLint("NotifyDataSetChanged")
     public void updateData(List<NewsDTO> newData) {
         newsList.addAll(newData);
+        notifyDataSetChanged();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void clearNewsList() {
+        this.newsList.clear();
         notifyDataSetChanged();
     }
 

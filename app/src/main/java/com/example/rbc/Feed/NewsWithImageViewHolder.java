@@ -34,7 +34,7 @@ public class NewsWithImageViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parentContext.startActivity(new Intent(parentContext, NewsPage.class));
+                parentContext.startActivity(new Intent(parentContext, NewsPage.class).putExtra("news", news));
             }
         });
     }

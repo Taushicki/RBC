@@ -13,4 +13,14 @@
 
     <string name="warning_user_not_found">User not found</string>
     <string name="warning_incorrect_password">Incorrect password</string>
+
+    <string name="registration_activity_create_account">Create Account</string>
+    <string name="registration_activity_information">Please fill the input blow here.</string>
+    <string name="registration_activity_login">Login</string>
+    <string name="registration_activity_email">Email</string>
+    <string name="registration_activity_password">Password</string>
+    <string name="registration_activity_confirm_password">Confirm Password</string>
+    <string name="registration_activity_sign_up_button">SIGN UP</string>
+    <string name="registration_activity_login_text">Already have a account?</string>
+    <string name="registration_activity_login_link">Sign in</string>
 </resources>
